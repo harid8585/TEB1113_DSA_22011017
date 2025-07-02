@@ -2,7 +2,7 @@
 id:22011017
 name:harid
 group: g1
-lab: L3
+lab: L4
 */
 #include <iostream>
 #include <string>
