@@ -4,32 +4,31 @@ name:harid
 group: g1
 lab: L6
 */
+
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Node
-{
+class Node {
 public:
     string name;
     Node *next_ptr;
 
     Node(string name, Node *next_ptr = nullptr)
-    { // Constructor with default nullptr
+    {
         this->name = name;
         this->next_ptr = next_ptr;
     }
 };
 
-class Queue
-{
+class Queue {
 private:
     Node *front;
     Node *rear;
 
 public:
     Queue(Node *front = nullptr)
-    { // Constructor takes Node* and initializes rear
+    {
         this->front = front;
         this->rear = front;
         if (front)
@@ -39,20 +38,19 @@ public:
     void enqueue(Node *node)
     {
         if (!node)
-            return; // Check for null pointer
+            return;
 
-        node->next_ptr = nullptr; // Set new node's next to nullptr
+        node->next_ptr = nullptr;
 
         if (!front)
-        { // If list is empty
+        {
             front = node;
             rear = node;
         }
         else
         {
-            rear->next_ptr = node; // Link current rear to new node
-            rear = node;           // Update rear to new node
-            rear->next_ptr = front;
+            rear->next_ptr = node;
+            rear = node;
         }
     }
 
@@ -64,7 +62,7 @@ public:
             cout << "Queue is empty" << endl;
             return;
         }
-        while (current != nullptr)
+        while (current)
         {
             cout << current->name << " <- ";
             current = current->next_ptr;
@@ -76,12 +74,15 @@ public:
     {
         if (!front)
         {
-            cout << "Stack is empty" << endl;
+            cout << "Queue is empty" << endl;
             return;
         }
 
         Node *temp = front;
         front = front->next_ptr;
+        if (front == nullptr)
+            rear = nullptr;
+
         cout << "Removing: " << temp->name << endl;
         delete temp;
     }
@@ -89,22 +90,19 @@ public:
 
 int main()
 {
-    // Create nodes dynamically
     Node *node1 = new Node("Ali");
     Node *node2 = new Node("Ahmed");
     Node *node3 = new Node("Alee");
     Node *node4 = new Node("Abu");
 
-    // Create queue and add nodes
-    Queue queue(node1);
+    Queue queue;
+    queue.enqueue(node1);
     queue.enqueue(node2);
     queue.enqueue(node3);
     queue.enqueue(node4);
 
-    // Display the queue
     queue.display_queue();
 
-    // Example of deletion
     queue.dequeue();
     cout << "After Dequeue: ";
     queue.display_queue();
