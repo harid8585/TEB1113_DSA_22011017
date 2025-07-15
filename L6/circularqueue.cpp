@@ -15,7 +15,7 @@ public:
     Node *next_ptr;
 
     Node(string name, Node *next_ptr = nullptr)
-    { // Constructor with default nullptr
+    {
         this->name = name;
         this->next_ptr = next_ptr;
     }
@@ -28,33 +28,64 @@ private:
     Node *rear;
 
 public:
+    // Constructor
     Queue(Node *front = nullptr)
-    { // Constructor takes Node* and initializes rear
+    {
         this->front = front;
         this->rear = front;
         if (front)
             front->next_ptr = nullptr;
     }
 
+    // Destructor to free memory
+    ~Queue()
+    {
+        while (front)
+        {
+            dequeue();
+        }
+    }
+
+    // Enqueue operation
     void enqueue(Node *node)
     {
         if (!node)
-            return; // Check for null pointer
+            return;
 
-        node->next_ptr = nullptr; // Set new node's next to nullptr
+        node->next_ptr = nullptr;
 
         if (!front)
-        { // If list is empty
+        {
             front = node;
             rear = node;
         }
         else
         {
-            rear->next_ptr = node; // Link current rear to new node
-            rear = node;           // Update rear to new node
+            rear->next_ptr = node;
+            rear = node;
         }
     }
 
+    // Dequeue operation
+    void dequeue()
+    {
+        if (!front)
+        {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+
+        Node *temp = front;
+        front = front->next_ptr;
+        cout << "Removing: " << temp->name << endl;
+        delete temp;
+
+        // If front becomes NULL, rear should also be NULL
+        if (!front)
+            rear = nullptr;
+    }
+
+    // Display the queue
     void display_queue()
     {
         Node *current = front;
@@ -63,27 +94,16 @@ public:
             cout << "Queue is empty" << endl;
             return;
         }
-        
-        do {
-            cout << current->name << " <- ";
-            current = current->next_ptr;
-        } while (current != front);
 
-        cout << "Front (" << front->name << ")" << endl;
-    }
-
-    void dequeue()
-    {
-        if (!front)
+        while (current)
         {
-            cout << "Stack is empty" << endl;
-            return;
+            cout << current->name;
+            if (current->next_ptr)
+                cout << " <- ";
+            current = current->next_ptr;
         }
 
-        Node *temp = front;
-        front = front->next_ptr;
-        cout << "Removing: " << temp->name << endl;
-        delete temp;
+        cout << " <- NULL" << endl;
     }
 };
 
@@ -102,10 +122,13 @@ int main()
     queue.enqueue(node4);
 
     // Display the queue
+    cout << "Initial Queue: ";
     queue.display_queue();
 
-    // Example of deletion
+    // Dequeue an element
     queue.dequeue();
+
+    // Display the queue after dequeue
     cout << "After Dequeue: ";
     queue.display_queue();
 
