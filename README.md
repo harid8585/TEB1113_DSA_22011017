@@ -15,4 +15,4 @@ Lab tasks for ADS May 2025.
 | 02/7/2025  | 6   | - [Queue](L6/queue.cpp) <br> - [Circular Queue](L6/circularqueue.cpp)  |
 | 09/7/2025  | 7   | - [Tree](L7/tree.cpp) |
 | 16/7/2025  | 8   | - [Binary Search Tree](L8/BinarySearchTree..cpp)  |
-|
+
