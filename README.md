@@ -13,3 +13,6 @@ Lab tasks for ADS May 2025.
 | 18/6/2025  | 4   | - [Circular Singly](L4/22011017_harid_L4.cpp) <br> - [Circular doubly](L4/22011017_harid_L4_doubly.cpp)   |
 | 25/6/2025  | 5   | - [Stack](L5/Stack.cpp)  |
 | 02/7/2025  | 6   | - [Queue](L6/queue.cpp) <br> - [Circular Queue](L6/circularqueue.cpp)  |
+| 09/7/2025  | 7   | - [Tree](L7/tree.cpp) |
+| 16/7/2025  | 8   | - [Binary Search Tree](L8/BinarySearchTree..cpp)  |
+|
